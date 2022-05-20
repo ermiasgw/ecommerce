@@ -10,4 +10,4 @@ class Test_mmodels(TestCase):
         self.assertTrue(isinstance(data,Catagory))
     def test_catagory_model_entry(self):
         data = self.data1
-        self.assertEqual(str(data), 'django1')
+        self.assertEqual(str(data), 'django')
