@@ -16,8 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
     'store.apps.StoreConfig',
     'basket',
+    'django_countries',
+
 ]
 
 MIDDLEWARE = [
@@ -85,15 +88,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-STORE_DIR = BASE_DIR / 'store'
-
 
 STATIC_URL = '/static/'
-STATIC_DIRS = [
-    os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
