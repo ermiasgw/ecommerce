@@ -2,6 +2,7 @@
 
 from store.models import Product
 from decimal import Decimal
+from django.conf import settings
 
 
 
@@ -61,3 +62,6 @@ class Basket():
             self.basket[product_id]['qty'] = qty
             self.save()
 
+    def clear(self):
+        del self.session['skey']
+        self.save()

@@ -10,6 +10,7 @@ coverage = "*"
 flake8 = "*"
 isort = "*"
 six = "*"
+stripe = "*"
 
 [dev-packages]
 

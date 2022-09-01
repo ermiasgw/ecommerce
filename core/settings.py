@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'basket',
     'django_countries',
+    'payment',
+    'orders',
 
 ]
 
@@ -104,3 +106,5 @@ LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STRIPE_ENDPOINT_SECRET = 'whsec_280bebaa80dcb7c4068a165778fab581fb0da1d593d0d9d1431a214aa776bfa0'
