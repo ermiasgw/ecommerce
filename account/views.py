@@ -32,7 +32,7 @@ def account_register(request):
             })
 
             user.email_user(subject=subject, message=message)
-            return HttpResponse('registerd succesfully and activation sent')
+            return render(request, 'account/registration/register_confirm.html')
 
     else:
         registerForm = RegistrationForm()

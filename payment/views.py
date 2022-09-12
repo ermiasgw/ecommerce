@@ -6,6 +6,8 @@ from basket.basket import Basket
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import HttpResponse
 from orders.views import payment_confirmation
+import os
+from django.conf import settings
 
 # Create your views here.
 
@@ -17,7 +19,7 @@ def BasketView(request):
     total = total.replace('.', '')
     total = int(total)
 
-    stripe.api_key = 'sk_test_51LcNtRFmb88Byii15MakOqYLeptq4xOVj67sfEt8sDLAAod7GL5L98oqVpFP2j8OTxAR1uWhXpogkRQvUSRHfncW00WEmefo17'
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
         amount=total,
         currency='gbp',
@@ -26,7 +28,7 @@ def BasketView(request):
         },
         metadata={'userid': request.user.id},
     )
-    return render(request, 'payment/home.html', {'client_secret': intent.client_secret} )
+    return render(request, 'payment/payment_form.html', {'client_secret': intent.client_secret, 'STRIPE_PUBISHABLE_KEY': os.environ.get('STRIPE_PUBLISHABLE_KEY') } )
 
 @csrf_exempt
 def stripe_webhook(request):

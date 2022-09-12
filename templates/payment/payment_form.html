@@ -1,29 +1,14 @@
-{% extends "../store/base.html" %}
+{% extends "../base.html" %}
 {% load static %}
 {% block title %}Payment{% endblock %}
 {% block content %}
 
-<style>
-  .account-form input
-    {
-    border: 2px solid #ccc;
-    height: calc(2em + .75rem + 2px);
-  }
 
-  .form-control {
-    border: 2px solid #ccc;
-  }
-
-  .account-form input:focus {
-    border-color: #1497ff;
-    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
-  }
-</style>
 
 <div class="container-fluid">
   <div class="row no-gutter">
     <div class="col-md-12">
-      <div class="login d-flex align-items-center py-5">
+      <div class="login d-flex align-items-center">
         <div class="container">
           <div class="row">
             <div id="payment-form" class="col-12 col-lg-6 mx-auto">
@@ -105,6 +90,7 @@
 
 
 <script>
+    var STRIPE_PUBLISHABLE_KEY = '{{ STRIPE_PUBLISHABLE_KEY }} '
     var CSRF_TOKEN = '{{ csrf_token }}';
 </script>
 <script src="https://js.stripe.com/v3/"></script>
