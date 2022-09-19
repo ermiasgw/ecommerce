@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = 'django-insecure-fx+qc#gnbyrat6)3z7wkz&4d8*db(#8%z1aqs5za7470(7sn+h'
 
@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'django_countries',
     'payment',
     'orders',
+    'mptt',
+
 
 ]
 
@@ -104,7 +106,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LcNtRFmb88Byii1yJ8InJ8iIW5gjDfk6thR4X7OR495Zjc9QLVAxBWxBbqSxDAEUG1UW9DjyBFUttwuyJjqVJ2O00uRyC29DN')
 STRIPE_SECRET_KEY = 'sk_test_51LcNtRFmb88Byii15MakOqYLeptq4xOVj67sfEt8sDLAAod7GL5L98oqVpFP2j8OTxAR1uWhXpogkRQvUSRHfncW00WEmefo17'
 
-AUTH_USER_MODEL = 'account.UserBase'
+AUTH_USER_MODEL = 'account.Customer'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login/'
 

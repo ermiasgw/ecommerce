@@ -1,7 +1,7 @@
 import email
 from typing_extensions import Required
 from django import forms
-from .models import UserBase
+from .models import Customer
 from django.contrib.auth.forms import AuthenticationForm
 
 class UserEditForm(forms.ModelForm):
@@ -29,7 +29,7 @@ class UserEditForm(forms.ModelForm):
     )
 
     class Meta:
-        model = UserBase
+        model = Customer
         fields = ('email', 'user_name', 'first_name',)
 
     def __init__(self, *args, **kwargs):
@@ -39,7 +39,7 @@ class UserEditForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if UserBase.objects.filter(email=email).exists():
+        if Customer.objects.filter(email=email).exists():
             raise forms.ValidationError(
                 'please use another email that is already taken'
             )
@@ -47,7 +47,7 @@ class UserEditForm(forms.ModelForm):
 
     def clean_username(self):
         user_name = self.cleaned_data['user_name'].lower()
-        r = UserBase.objects.filter(user_name=user_name)
+        r = Customer.objects.filter(user_name=user_name)
         if r.count():
             raise forms.ValidationError("username already exists")
         return user_name 
@@ -76,12 +76,12 @@ class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput)
 
     class Meta:
-        model = UserBase
+        model = Customer
         fields = ('user_name', 'email',)
 
     def clean_username(self):
         user_name = self.cleaned_data['user_name'].lower()
-        r = UserBase.objects.filter(user_name=user_name)
+        r = Customer.objects.filter(user_name=user_name)
         if r.count():
             raise forms.ValidationError("username already exists")
         return user_name
@@ -94,7 +94,7 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if UserBase.objects.filter(email=email).exists():
+        if Customer.objects.filter(email=email).exists():
             raise forms.ValidationError(
                 'please use another email that is already taken'
             )

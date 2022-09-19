@@ -11,6 +11,8 @@ flake8 = "*"
 isort = "*"
 six = "*"
 stripe = "*"
+django-debug-toolbar = "*"
+django-mptt = "*"
 
 [dev-packages]
 
